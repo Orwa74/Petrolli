@@ -1,0 +1,41 @@
+﻿@model PetrolStation.Models.ViewModels.FuelPriceVM
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DashEdit">
+    <input asp-for="FuelPrice.Id" hidden />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+            <br />
+            <h2 class="text-primary">Edit Fuel Price</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="FuelPrice.FuelTypeId"></label>
+            <select asp-for="FuelPrice.FuelTypeId" asp-items="@Model.FuelTypeList" class="form-select" >
+                <option disabled selected>--Select Fuel Type--</option>
+            </select>
+            <span asp-validation-for="FuelPrice.FuelTypeId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FuelPrice.PurrechasingPrice"></label>
+            <input asp-for="FuelPrice.PurrechasingPrice" class="form-control" color="black" />
+            <span asp-validation-for="FuelPrice.PurrechasingPrice" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FuelPrice.SelingPrice"></label>
+            <input asp-for="FuelPrice.SelingPrice" class="form-control" color="black" />
+            <span asp-validation-for="FuelPrice.SelingPrice" class="text-danger"></span>
+        </div>
+        <a asp-controller="FuelPrice" asp-action="DashIndex" class="btn btn-light" style="width: 49%">
+            Back to Fuel Prices
+        </a>
+            <button type="submit" class="btn btn-primary" style="width:50%">Update</button>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

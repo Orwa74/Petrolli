@@ -1,0 +1,74 @@
+﻿@model EndShift
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <br />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p class="text-danger">You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Date Time
+                </th>
+                <th>
+                    Shift
+                </th>
+                <th>
+                    Employee
+                </th>
+                <th>
+                    Pump Code
+                </th>
+                <th>
+                    Last Meter
+                </th>
+                <th>
+                    Current Meter
+                </th>
+                <th>
+                    Total Price
+                </th>
+
+        </thead>
+        <tbody>
+
+            <tr>
+                <td width="15%">
+                    @(Model?.Date.ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A")
+                </td>
+                <td width="15%">
+                    @(Model?.Shift?.Name?? "N/A")
+                </td>
+                <td width="15%">
+                    @(Model?.Employee?.FirstName ?? "N/a")
+                </td>
+                <td width="15%">
+                    @(Model?.Pump?.PumpCode ?? "N/A")
+                </td>
+                <td width="15%">
+                    @(Model?.PumpLastMeter ?? 0)
+                </td>
+                <td width="15%">
+                    @(Model?.PumpMeter ?? 0)
+                </td>
+                <td width="15%">
+                    @(Model?.TotalProce ?? 0)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a asp-controller="EndShift" asp-action="Index" class="btn btn-light" style="width: 49%">
+        Back to The List
+    </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

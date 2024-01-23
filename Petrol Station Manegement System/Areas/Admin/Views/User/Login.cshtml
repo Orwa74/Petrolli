@@ -1,0 +1,44 @@
+﻿@model PetrolStation.Models.User
+
+<partial name="_Navbar" />
+
+
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-light text-dark" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                            <p class="text-dark-50 mb-5">Please enter your user name and password!</p>
+
+                            <form asp-controller="User" asp-action="Login" method="post" class="login-form">
+                                <div class="text-danger" asp-validation-summary="All"></div>
+                                <div class="form-outline form-dark mb-4">
+                                    <input asp-for="UserName" class="form-control" placeholder="User Name">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline form-dark mb-4">
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                                <button type="submit" class="btn btn-outline-dark btn-lg px-5">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

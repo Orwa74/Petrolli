@@ -1,0 +1,37 @@
+﻿@model FuelType
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p class="text-danger">You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Feul Type
+                </th>
+        </thead>
+        <tbody>
+                <tr>
+                    <td width="70%">
+                    @Model.Fuel_Type
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <a asp-controller="FuelType" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Fuel Type List
+        </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

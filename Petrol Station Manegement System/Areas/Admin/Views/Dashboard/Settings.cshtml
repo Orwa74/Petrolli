@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+    <style>
+        .large-button {
+            width: 200px;
+            height: 100px;
+            background-color: white;
+            color: black;
+            font-size: 18px;
+            border: 2px solid black;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .large-button:hover {
+                box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2), inset 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    </style>
+
+</head>
+<body>
+    <partial name="_Sidebar" />
+    <br />
+    <h2>General Station Settings: </h2>
+    <br />
+    <div  style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <a asp-area="Admin" asp-controller="FuelType" asp-action="Index" class="large-button">
+            <i class="bi bi-fuel-pump-fill"></i> &ensp;Fuel Type
+        </a>
+        <a asp-area="Admin" asp-controller="FuelPrice" asp-action="Index" class="large-button">
+            <i class="bi bi-currency-dollar"></i>Fuel Price
+        </a>
+        <a asp-area="Admin" asp-controller="Tank" asp-action="Index" class="large-button">Tanks</a>
+
+        <a asp-area ="Admin" asp-controller="Pump" asp-action="Index" class="large-button">
+            <i class="bi bi-fuel-pump"></i> &ensp;Pumps
+        </a>
+        <a asp-area="Admin" asp-controller="Shift" asp-action="Index" class="large-button">
+            <i class="bi bi-clock-history"></i> &ensp;Shifts Time
+        </a>
+        <a asp-area="Admin" asp-controller="CashBox" asp-action="Index" class="large-button">
+            <i class="bi bi-cash"></i> &ensp;Cash Box
+        </a>
+        <a asp-area="Admin" asp-controller="User" asp-action="Index" class="large-button">
+            Users Settinges
+        </a>
+        <a asp-area="Admin" asp-controller="Station" asp-action="Index" class="large-button">
+            Station Settings
+        </a>
+    </div>
+    <br/>
+    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"
+       class="btn btn-outline-primary " style="width: 99%">
+        Back to Dasboard
+    </a>
+   
+</body>
+
+

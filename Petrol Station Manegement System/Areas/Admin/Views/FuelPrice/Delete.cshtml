@@ -1,0 +1,50 @@
+﻿@model FuelPrice
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p class="text-danger">You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Feul Type
+                </th>
+                <th>
+                    Purrechasing Price
+                </th>
+                <th>
+                    Seling Price
+                </th>
+                
+        </thead>
+        <tbody>
+            
+                <tr>
+                    <td width="30%">
+                    @Model.FuelType.Fuel_Type
+                    </td>
+                <td width="30%">
+                    @Model.PurrechasingPrice
+                    </td>
+                <td width="30%">
+                    @Model.SelingPrice
+                    </td>
+                   
+                </tr>
+        </tbody>
+    </table>
+    <a asp-controller="FuelPrice" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Prices List
+        </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

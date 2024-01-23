@@ -1,0 +1,101 @@
+﻿@model PetrolStation.Models.Station
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Fuel Station Management</title>
+    <link href="~/css/aboutus.css" rel="stylesheet">
+</head>
+
+
+<body >
+    <partial name="_Navbar" />
+    <div class="bg-light">
+        <div class="container py-5">
+            <div class="row h-100 align-items-center py-5">
+                <div class="col-lg-6">
+                    <h1 class="display-4">About us</h1>
+                    <p class="font-italic text-muted mb-4">
+                        Petrolli Station was founded in 1995 by a team of dedicated individuals who shared
+                        a passion for providing high-quality fuel and excellent customer service.
+                    </p>
+                    <p class="font-italic text-muted mb-4">
+                        Our commitment to our customers has always been at the forefront of our mission.
+                        We believe that every journey should start with a full tank of top-tier fuel,
+                        and we take pride in ensuring that your vehicles run smoothly, no matter where the road takes you.
+                    </p>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block"><img src="~/images/Story.png" alt="" class="img-fluid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white py-5">
+        <div class="container py-5" style="padding: 0 3rem;">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
+
+                    <h2 class="font-weight-light">Our Mission</h2>
+                    <p class="font-italic text-muted mb-4">
+                        Our mission is to provide high-quality fuel and excellent customer service to keep your vehicles running smoothly.
+                    </p>
+                    <p class="font-italic text-muted mb-4">
+                        As we continue to grow our fuel stations, our core values remain unchanged.
+                        We are dedicated to providing clean and safe facilities, friendly and knowledgeable staff,
+                        and environmentally responsible practices.
+                    </p>
+                </div>
+                <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="~/images/mission.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-5 px-5 mx-auto"><img src="~/images/vision.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+                <div class="col-lg-6">
+                    <i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
+                    <h2 class="font-weight-light">Our vision</h2>
+                    <p class="font-italic text-muted mb-4">
+                        At Petrolli Station, our vision is to become the leading provider of innovative and sustainable fuel solutions
+                        We aim to revolutionize the fuel industry by continuously striving for excellence in every aspect of our business.
+                        </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <section style="background-color: #333; color: #fff;     padding: 40px 2rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 style="color: #ffc107;">Contact Us</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        Address: @Model.Address<br>
+                        Phone: @Model.Phone<br>
+                        Email: @Model.Email
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h3 style="color: #ffc107;">Follow Us</h3>
+                    <ul class="list-inline social-icons">
+                        <li class="list-inline-item"><a href="#" style="color: #fff; font-size: 24px; text-decoration: none;"><i class="bi bi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" style="color: #fff; font-size: 24px; text-decoration: none;"><i class="bi bi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" style="color: #fff; font-size: 24px; text-decoration: none;"><i class="bi bi-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer" style="background-color: #222; padding: 10px 0; text-align: center; font-size: 12px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        &copy; 2023 Petrolli. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

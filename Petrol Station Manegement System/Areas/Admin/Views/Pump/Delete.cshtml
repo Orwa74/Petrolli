@@ -1,0 +1,67 @@
+﻿@model Pump
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p class="text-danger">You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Pump Code
+                </th>
+                <th>
+                    Currernt Meter
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Fuel Type
+                </th>
+                <th>
+                    Tank
+                </th>
+                
+        </thead>
+        <tbody>
+            
+                <tr>
+                    <td width="20%">
+                    @Model.PumpCode
+                    </td>
+                <td width="20%">
+                    @Model.CurrerntMeter
+                    </td>
+                <td width="20%">
+                    @Model.Status
+                    </td>
+                <td width="20%">
+                    @Model.FuelType.Fuel_Type
+                </td>
+                <td width="20%">
+                    @Model.Tank.TankName
+                </td>
+                   
+                </tr>
+            
+            
+
+        </tbody>
+    </table>
+    <a asp-controller="Pump" asp-action="Index" class="btn btn-light" style="width: 49%">
+        Back to Pumps List
+        </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

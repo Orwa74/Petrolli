@@ -1,0 +1,95 @@
+﻿@model PetrolStation.Models.ViewModels.EmployeeVM
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="Upsert">
+    <input asp-for="Employee.Id" hidden />
+    <br />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Employee.Id != 0 ? "Update" : "Create") Employee</h2>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Employee.FirstName"></label>
+                    <input asp-for="Employee.FirstName" class="form-control" color="black" />
+                    <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Employee.LastName"></label>
+                    <input asp-for="Employee.LastName" class="form-control" color="black" />
+                    <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Employee.Role"></label>
+                    <input asp-for="Employee.Role" class="form-control" color="black" />
+                    <span asp-validation-for="Employee.Role" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Employee.Salary"></label>
+                    <input asp-for="Employee.Salary" class="form-control" color="black" />
+                    <span asp-validation-for="Employee.Salary" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Employee.ShiftId"></label>
+                    <select asp-for="Employee.ShiftId" asp-items="@Model.ShiftList" class="form-select">
+                        <option disabled selected>--Select Fuel Type--</option>
+                    </select>
+                    <span asp-validation-for="Employee.ShiftId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Employee.JoinDate"></label>
+                    <input asp-for="Employee.JoinDate" class="form-control" color="black" type="date" />
+                    <span asp-validation-for="Employee.JoinDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Employee.PhoneNumber"></label>
+            <input asp-for="Employee.PhoneNumber" class="form-control" color="black" />
+            <span asp-validation-for="Employee.PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Employee.Email"></label>
+            <input asp-for="Employee.Email" class="form-control" color="black" />
+            <span asp-validation-for="Employee.Email" class="text-danger"></span>
+        </div>
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Employees List
+        </a>
+        @if (Model.Employee.Id != 0)
+        {
+            <button type="submit" class="btn btn-primary" style="width:50%">Update</button>
+
+        }
+        else
+        {
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:50%">Create</button>
+
+        }
+        
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

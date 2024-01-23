@@ -1,0 +1,62 @@
+﻿@model Tank
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <br />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p class="text-danger">You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Feul Type
+                </th>
+                <th>
+                    Tank Name
+                </th>
+                <th>
+                    Capacity
+                </th>
+                <th>
+                    Current Quantity
+                </th>
+
+        </thead>
+        <tbody>
+
+            <tr>
+                <td width="20%">
+                    @Model.FuelType.Fuel_Type
+                </td>
+                <td width="20%">
+                    @Model.TankName
+                </td>
+                <td width="20%">
+                    @Model.Capacity
+                </td>
+                <td width="20%">
+                    @Model.Current_Quantity
+                </td>
+
+            </tr>
+
+
+
+        </tbody>
+    </table>
+    <a asp-controller="Tank" asp-action="Index" class="btn btn-light" style="width: 49%">
+        Back to Fuel Tanks List
+    </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

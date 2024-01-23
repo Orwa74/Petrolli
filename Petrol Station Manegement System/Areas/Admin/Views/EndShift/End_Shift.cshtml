@@ -1,0 +1,81 @@
+﻿@model PetrolStation.Models.ViewModels.EndShiftVM
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="End_Shift">
+    <br />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+            <br />
+            <h2 class="text-primary">End Shift</h2>
+            <p class="text-danger">Enter The Informations Carfully You Can't Edit it</p>
+            <hr />
+        </div>
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="EndShift.ShiftId"></label>
+                    <select asp-for="EndShift.ShiftId" asp-items="@Model.ShiftList" class="form-select">
+                        <option disabled selected>--Select Shift Name--</option>
+                    </select>
+                    <span asp-validation-for="EndShift.ShiftId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="EndShift.EmployeeId"></label>
+                    <select asp-for="EndShift.EmployeeId" asp-items="@Model.EmployeeList" class="form-select">
+                        <option disabled selected>--Select Employee Fisrt Name--</option>
+                    </select>
+                    <span asp-validation-for="EndShift.EmployeeId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="EndShift.PumpId"></label>
+                    <select asp-for="EndShift.PumpId" asp-items="@Model.PumpList" class="form-select">
+                        <option disabled selected>--Select Pump Code--</option>
+                    </select>
+                    <span asp-validation-for="EndShift.PumpId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="EndShift.PumpMeter"></label>
+                    <input asp-for="EndShift.PumpMeter" class="form-control" color="black" />
+                    <span asp-validation-for="EndShift.PumpMeter" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="EndShift.Price"></label>
+            <input asp-for="EndShift.Price" class="form-control" color="black" />
+            <span asp-validation-for="EndShift.Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="EndShift.CashBoxId"></label>
+            <select asp-for="EndShift.CashBoxId" asp-items="@Model.CashBoxList" class="form-select">
+                <option disabled selected>--Select Cash Box--</option>
+            </select>
+            <span asp-validation-for="EndShift.CashBoxId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="EndShift.Notes"></label>
+            <textarea asp-for="EndShift.Notes" class="form-control" rows="4" color="black"></textarea>
+            <span asp-validation-for="EndShift.Notes" class="text-danger"></span>
+        </div>
+
+        <a asp-controller="EndShift" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to the List
+        </a>
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:50%">Add</button>
+    </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

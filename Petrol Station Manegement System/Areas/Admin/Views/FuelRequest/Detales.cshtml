@@ -1,0 +1,33 @@
+﻿@model FuelRequest
+
+<partial name="_Sidebar" />
+<div class="container p-2">
+    <h2 class="text-primary">Fuel Request Details</h2>
+</div>
+<hr />
+
+<table class="table table-bordered">
+    <tr>
+        <td><strong>Date Time:</strong></td>
+        <td>@Model.JoinDate</td>
+    </tr>
+    <tr>
+        <td><strong>Fuel Type:</strong></td>
+        <td>@Model.FuelType.Fuel_Type</td>
+    </tr>
+    <tr>
+        <td><strong>Fuel Amount:</strong></td>
+        <td>@Model.Amount</td>
+    </tr>
+    <tr>
+        <td><strong>Supplier Name:</strong></td>
+        <td>@Model.Supplier.Name</td>
+    </tr>
+        <td><strong>Notes:</strong></td>
+        <td>@Model.Notes</td>
+    </tr>
+</table>
+<br/>
+<a asp-controller="FuelRequest" asp-action="Index" class="btn btn-light" style="width: 99%">
+    Back to The Fuel Request List
+</a>

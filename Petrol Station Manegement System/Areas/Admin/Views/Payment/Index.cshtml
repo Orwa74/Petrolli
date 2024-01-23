@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Payment>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-md-6">
+            <h2 class="text-primary">Payments</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-controller="Payment" asp-action="AddPayment" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &ensp; Add Payment
+            </a>
+        </div>
+    </div>
+</div>
+<hr />
+<table class="table tabel-bordered table-striped" style="width: 100%"> 
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" class="text-dark">@Html.DisplayNameFor(model => model.Date)</a>
+            </th>
+            <th>
+                Payment Type
+            </th>
+            <th>
+                The Price
+            </th>
+            <th>
+                Employee
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="_Sidebar" />
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td  width="20%">
+                    <a asp-controller="Payment" asp-action="Detales" asp-route-id="@obj.Id" class="text-dark">@obj.Date</a>
+                </td>
+                <td width="20%">
+                    @obj.Type
+                </td>
+                <td width="20%">
+                    @obj.ThePrice $
+                </td>
+                <td width="20%">
+                    @obj.Employee.FirstName
+                </td>
+                <td>
+                    <div class="w-10 btn-group" role="group" >
+                        <a asp-controller="Payment" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>   
+@Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}),
+new X.PagedList.Web.Common.PagedListRenderOptions{
+    LiElementClasses = new string[] {"page-item"},
+    PageClasses = new string[] {"page-link"}
+})

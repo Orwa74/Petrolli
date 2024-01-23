@@ -1,0 +1,71 @@
+﻿@model PetrolStation.Models.ViewModels.PaymentVM
+
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="AddPayment">
+    <br />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+            <br />
+            <h2 class="text-primary">Add New Payment</h2>
+            <hr />
+        </div>
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Payment.Type"></label>
+                    <select asp-for="Payment.Type" asp-items="@Model.TypesOptions" class="form-select">
+                        <option disabled selected>--Select Payment Type--</option>
+                    </select>
+                    <span asp-validation-for="Payment.Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Payment.ThePrice"></label>
+                    <input asp-for="Payment.ThePrice" class="form-control" color="black" />
+                    <span asp-validation-for="Payment.ThePrice" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Payment.EmployeeId"></label>
+                    <select asp-for="Payment.EmployeeId" asp-items="@Model.EmployeeList" class="form-select">
+                        <option disabled selected>--Select Employee Fisrt Name--</option>
+                    </select>
+                    <span asp-validation-for="Payment.EmployeeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Payment.CashBoxId"></label>
+                    <select asp-for="Payment.CashBoxId" asp-items="@Model.CashBoxList" class="form-select">
+                        <option disabled selected>--Select Cash Box--</option>
+                    </select>
+                    <span asp-validation-for="Payment.CashBoxId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Payment.Description"></label>
+            <textarea asp-for="Payment.Description" class="form-control" rows="4" color="black"></textarea>
+            <span asp-validation-for="Payment.Description" class="text-danger"></span>
+        </div>
+
+        <a asp-controller="Payment" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to the List
+        </a>
+        <button type="submit" class="btn btn-primary" style="width:50%">Add</button>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

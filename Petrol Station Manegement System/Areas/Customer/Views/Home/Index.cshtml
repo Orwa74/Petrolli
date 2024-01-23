@@ -1,0 +1,73 @@
+﻿@model List<FuelType>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+
+    <title>Petrol Station</title>
+    <link rel="stylesheet" type="text/css" href="~/css/homeStyle.css">
+</head>
+<body>
+    <partial name="_Navbar" />
+    <div class="hero">
+        <div class="container-fluid">
+            <div class="row padding-2rem">
+                    <h1>Welcome To Petrolli</h1>
+                    <p>We provide all types of fuel 24 hours a day, 7 days a week, with high quality and competitive prices.</p>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row padding-2rem">
+            @foreach (var fuelType in Model)
+            {
+                <div class="col-lg-4 col-md-6" >
+                    <div class="card mb-4" onmouseover="this.style.boxShadow='0 0 5px rgba(0, 0, 0, 0.3)'"
+                         onmouseout="this.style.boxShadow='none'">
+                        <div class="card-body">
+                            <h5 class="card-title">@fuelType.Fuel_Type: 
+                                @if (fuelType.Tank.Current_Quantity > 500)
+                                {
+                                    <span class="text-success">Available</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Not Available</span>
+                                }
+                            </h5>
+                            <p class="card-text">Price: @fuelType.FuelPrices.FirstOrDefault()?.SelingPrice $</p>
+                            <p class="card-text">Crowding Level: @fuelType.Crowding?.Level</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <section style="background-color: #333; color: #fff;     padding: 40px 2rem;">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12 text-center">
+                    <h3 style="color: #ffc107;">Follow Us</h3>
+                    <ul class="list-inline social-icons">
+                        <li class="list-inline-item"><a href="#" style="color: #fff; font-size: 24px; text-decoration: none;"><i class="bi bi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" style="color: #fff; font-size: 24px; text-decoration: none;"><i class="bi bi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" style="color: #fff; font-size: 24px; text-decoration: none;"><i class="bi bi-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer" style="background-color: #222; padding: 10px 0; text-align: center; font-size: 12px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        &copy; 2023 Petrolli. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

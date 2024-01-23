@@ -1,0 +1,55 @@
+﻿@model Shift
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p>You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Shift Name
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+                
+        </thead>
+        <tbody>
+            
+                <tr>
+                    <td width="30%">
+                    @Model.Name
+                    </td>
+                <td width="30%">
+                    @Model.StartTime
+                    </td>
+                <td width="30%">
+                    @Model.EndTime
+                    </td>
+                   
+                </tr>
+            
+            
+
+        </tbody>
+    </table>
+    <a asp-controller="Shift" asp-action="Index" class="btn btn-light" style="width: 49%">
+        Back to Shifts List
+        </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

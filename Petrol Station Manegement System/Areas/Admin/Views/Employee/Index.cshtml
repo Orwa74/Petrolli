@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Employee>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Sidebar" />
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-md-3">
+            <h2 class="text-primary">Employees List</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <form asp-action="Index" method="get">
+                    <p>
+                        <input type="submit" value="Search" class="btn btn-default" />
+                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    </p>
+            </form>
+        </div>
+        <div class="col-md-3 text-end">
+            <a asp-controller="Employee" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &ensp; Add New Employee
+            </a>
+        </div>
+    </div>
+</div>
+<hr />
+
+<table  class="table tabel-bordered table-striped" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" class="text-dark">@Html.DisplayNameFor(model => model.FirstName)</a>
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Work in:
+            </th>
+            <th>
+                Shift
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Joined since
+            </th>
+            <th>
+               
+            </th>
+            
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="15%">
+                    @obj.FirstName
+                </td>
+                <td width="15%">
+                    @obj.LastName
+                </td>
+                <td width="15%">
+                    @obj.Role
+                </td>
+                <td width="15%">
+                    @obj.Shift.Name
+                </td>
+                <td width="15%">
+                    @obj.Salary$
+                </td>
+                <td width="15%">
+                    @obj.PhoneNumber
+                </td>
+                <td width="15%">
+                    @obj.Email
+                </td>
+                <td width="15%">
+                    @obj.JoinDate
+                </td>
+                <td >
+                    <div class="w-50 btn-group" role="group">
+                        <a asp-controller="Employee" asp-action="Upsert" asp-route-id="@obj.Id"
+                           class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-controller="Employee" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>   
+@Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}),
+new X.PagedList.Web.Common.PagedListRenderOptions{
+    LiElementClasses = new string[] {"page-item"},
+    PageClasses = new string[] {"page-link"}
+})

@@ -1,0 +1,48 @@
+﻿
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Calibri',sans-serif;
+}
+.hero {
+    background-image: url('../images/hero.jpg');
+    width: 100%;
+    min-height: 120vh;
+    /*    padding: 10px 10%;
+*/ overflow: hidden;
+    position: relative;
+    background-size: cover;
+}
+.container-fluid {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+    .hero .col-md-6 {
+        width: 50%; 
+    }
+
+.content{
+    margin-top: 10%;
+    max-width: 400px;
+}
+.content h1{
+    font-size: 70px;
+    color: #222;
+}
+.content p{
+    margin: 10px 0 30px;
+    color:#333;
+}
+feature-img{
+    width: 530px;
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+}
+.padding-2rem{
+    padding : 2rem;
+}

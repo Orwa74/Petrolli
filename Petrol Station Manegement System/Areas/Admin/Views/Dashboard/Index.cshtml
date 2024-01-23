@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+
+</head>
+<body>
+    <partial name="_NavDash" />
+    <partial name="_Sidebar" />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6" style="border-radius: 50px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                                                margin-left: 10px; margin-top: 10px; margin-bottom: 10px">
+                <h5 class="text-primary text-center">Fuel Tanks:</h5>
+
+                @foreach (var tank in Model.Tanks)
+                {
+                    var progressClass = "bg-success";
+
+                    if (tank.Current_Quantity <= tank.Capacity / 4)
+                    {
+                        progressClass = "bg-danger";
+                    }
+                    else if (tank.Current_Quantity <= tank.Capacity / 3)
+                    {
+                        progressClass = "bg-warning";
+                    }
+
+                    <div class="row p-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="text-primary">@tank.FuelType.Fuel_Type </h5>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    @(string.Format("{0:0.00}%", 100 * tank.Current_Quantity / tank.Capacity))
+                                    = @tank.Current_Quantity Litter
+                                </p>
+                            </div>
+                        </div>
+                            
+                        <div class="progress">
+                            <div class="progress-bar @progressClass"
+                                 role="progressbar"
+                                 style="width: @(100 * tank.Current_Quantity / tank.Capacity)%;"
+                                 aria-valuenow="@tank.Current_Quantity"
+                                 aria-valuemin="0"
+                                 aria-valuemax="@tank.Capacity">
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-3 col-md-3" style="border-radius: 50px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                                                margin-left: 10px; margin-top: 10px; margin-bottom: 10px">
+                
+                <h5 class="text-primary text-center">Crowding Levels:</h5>
+                <br />
+                <div class="text-center">
+                        @foreach (var type in Model.Crowdings)
+                        {
+                            <div class="col-lg-12 col-md-6 text-center">
+                                <div>
+                                    <h5 class="text-primary">@type.FuelType.Fuel_Type</h5>
+                                    <input type="hidden" name="fuelTypeId" value="@type.FuelType.Id" />
+
+                                    @{
+                                        string crowdingClass = "text-success"; 
+
+                                        if (type.Level == CrowdingLevel.Medium)
+                                        {
+                                            crowdingClass = "text-warning"; 
+                                        }
+                                        else if (type.Level == CrowdingLevel.High)
+                                        {
+                                            crowdingClass = "text-danger"; 
+                                        }
+                                    }
+
+                                    <p>Crowding Level: <span id="crowding-level-display-@type.FuelType.Id" class="@crowdingClass">@type.Level</span></p>
+                                </div>
+                            </div>
+                        } 
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3" style="border-radius: 50px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                                                margin-left: 10px; margin-top: 10px; margin-bottom: 10px">
+                <h5 class="text-primary text-center">Fuel Prices:</h5>
+                <br />
+                <div class="text-center">
+                    @foreach (var price in Model.FuelPrices)
+                        {
+                            <div class="col-lg-12 col-md-6 text-center">
+                                <div>
+                                    <h5 class="text-primary">@price.FuelType.Fuel_Type</h5>
+                                    <input type="hidden" name="fuelTypeId" value="@price.FuelType.Id" />
+
+                                <p>Fuel price: <span id="price-level-display-@price.FuelType.Id" class="text-wrap">@price.SelingPrice</span> $</p>
+                                </div>
+                            </div>
+                        }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+
+                <table class="table tabel-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Date Time
+                            </th>
+                            <th>
+                                Shift
+                            </th>
+                            <th>
+                                Employee
+                            </th>
+                            <th>
+                                Pump Code
+                            </th>
+                            <th>
+                                Last Meter
+                            </th>
+                            <th>
+                                Current Meter
+                            </th>
+                            <th>
+                                Fuel Amount
+                            </th>
+                            <th>
+                                Litter Price
+                            </th>
+                            <th>
+                                Total price
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @{
+                            int recordCount = 0; 
+
+                        }
+
+                        @foreach (var endshift in Model.EndShifts)
+                        {
+                            if (recordCount < 3) // Check if we have displayed the Last 3 records
+                            {
+                                <tr>
+                                    <td width="10%">
+                                        @endshift.Date
+                                    </td>
+                                    <td width="10%">
+                                        @endshift.Shift.Name
+                                    </td>
+                                    <td width="10%">
+                                        @endshift.Employee.FirstName
+                                    </td>
+                                    <td class="text-center" width="10%">
+                                        @endshift.Pump.PumpCode
+                                    </td>
+                                    <td class="text-center" width="10%">
+                                        @endshift.PumpLastMeter
+                                    </td>
+                                    <td class="text-center" width="10%">
+                                        @endshift.PumpMeter
+                                    </td>
+                                    <td width="10%">
+                                        @{
+                                            var amount = endshift.PumpMeter - endshift.PumpLastMeter;
+                                        }
+                                        @amount (litter)
+                                    </td>
+                                    <td width="10%">
+                                        @endshift.Price $
+                                    </td>
+                                    <td width="10%">
+                                        @endshift.TotalProce $
+                                    </td>
+                                </tr>
+
+                                recordCount++; // Increment the counter variable
+                            }
+                            else
+                            {
+                                break; // Exit the loop after displaying the first 3 records
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="col-md-2" >
+                <br />
+                <br />
+                <div class="col-lg-12 col-md-3" style="border:1px solid ; border-radius:50px; margin-left: 10px">
+                    <div class="text-center">
+                        <h5 class="text-primary text-center">
+                            <br />
+
+                            Cash Box: </h5>
+                        @foreach (var box in Model.CashBox)
+                        {
+                            <div class="col-lg-12 col-md-6 text-center">
+                                <div>
+                                    <span style="font-weight: bold; color: red;">@box.CurrentAmount</span> $
+                                </div>
+                            </div>
+                        }
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+

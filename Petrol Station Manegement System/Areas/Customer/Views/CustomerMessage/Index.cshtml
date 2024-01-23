@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CustomerMessage>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-md-6">
+            <h2 class="text-primary">Customer Messages</h2>
+        </div>
+    </div>
+</div>
+<hr />
+
+<table class="table tabel-bordered table-striped" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" class="text-dark">@Html.DisplayNameFor(model => model.SendTime)</a>
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Message
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="_Sidebar" />
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="15%">
+                    @obj.SendTime
+                </td>
+                <td width="10%">
+                    @obj.Name
+                </td>
+                <td width="20%">
+                    @obj.Email
+                </td>
+                <td width="70%">
+                    @obj.Message
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}),
+new X.PagedList.Web.Common.PagedListRenderOptions{
+    LiElementClasses = new string[] {"page-item"},
+    PageClasses = new string[] {"page-link"}
+})

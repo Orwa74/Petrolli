@@ -1,0 +1,55 @@
+﻿@model PetrolStation.Models.ViewModels.FuelAdditionVM
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="Add">
+    <br />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+            <br />
+            <h2 class="text-primary">Add Fuel</h2>
+            <p class="text-danger">Enter The Informations Carfully You Can't Edit it</p>
+            <hr />
+        </div>
+        <div class="text-danger" asp-validation-summary="All"></div> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="FuelAddition.FuelTypeId"></label>
+                    <select asp-for="FuelAddition.FuelTypeId" asp-items="@Model.FuelTypeList" class="form-select">
+                        <option disabled selected>--Select Fuel Type--</option>
+                    </select>
+                    <span asp-validation-for="FuelAddition.FuelTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="FuelAddition.TankId"></label>
+                    <select asp-for="FuelAddition.TankId" asp-items="@Model.TankList" class="form-select">
+                        <option disabled selected>--Select Fuel Type--</option>
+                    </select>
+                    <span asp-validation-for="FuelAddition.TankId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FuelAddition.QuantityAdded"></label>
+            <input asp-for="FuelAddition.QuantityAdded" class="form-control" color="black" />
+            <span asp-validation-for="FuelAddition.QuantityAdded" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FuelAddition.PurchasingFuelPrice"></label>
+            <input asp-for="FuelAddition.PurchasingFuelPrice" class="form-control" color="black" />
+            <span asp-validation-for="FuelAddition.PurchasingFuelPrice" class="text-danger"></span>
+        </div>
+        <a asp-controller="FuelAddition" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Addition List
+        </a>
+        <button type="submit" class="btn btn-primary" style="width:50%">Add</button>
+    </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

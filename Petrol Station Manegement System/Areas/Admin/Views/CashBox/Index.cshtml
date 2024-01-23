@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CashBox>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-md-6">
+            <h2 class="text-primary">Cash Boxs</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-controller="CashBox" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &ensp; Create New CashBox
+            </a>
+        </div>
+    </div>
+</div>
+<br />
+
+<table class="table tabel-bordered table-striped" style="width: 100%"> 
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Current Amount
+            </th>
+            <th>
+                Last Change
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="_Sidebar" />
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="25%">
+                    @obj.Name
+                </td>
+                <td width="25%">
+                    @obj.CurrentAmount
+                </td>
+                <td width="25%">
+                    @obj.Date
+                </td>
+                
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="CashBox" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-area="Admin" asp-controller="Dashboard" asp-action="Settings"
+   class="btn btn-light" style="width: 99%">
+    Back to Settings
+</a>

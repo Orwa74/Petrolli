@@ -1,0 +1,79 @@
+﻿@model PetrolStation.Models.ViewModels.PumpVM
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="Upsert">
+    <input asp-for="Pump.Id" hidden />
+    <div action="border p-3 mt-4 row">
+        <div class="row pb-2">
+            <br />
+            <h2 class="text-primary">@(Model.Pump.Id != 0 ? "Update" : "Create") Pump</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+                <label asp-for="Pump.PumpCode"></label>
+                <input asp-for="Pump.PumpCode" class="form-control" color="black" />
+                <span asp-validation-for="Pump.PumpCode" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Pump.CurrerntMeter"></label>
+                    <input asp-for="Pump.CurrerntMeter" class="form-control" color="black" />
+                    <span asp-validation-for="Pump.CurrerntMeter" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Pump.Status"></label>
+                    <select asp-for="Pump.Status" asp-items="@Model.StatusOptions" class="form-select">
+                        <option disabled selected>--Select Pump Status--</option>
+                    </select>
+                    <span asp-validation-for="Pump.Status" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Pump.FuelTypeId"></label>
+                    <select asp-for="Pump.FuelTypeId" asp-items="@Model.FuelTypeList" class="form-select">
+                        <option disabled selected>--Select Fuel Type--</option>
+                    </select>
+                    <span asp-validation-for="Pump.FuelTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Pump.TankId"></label>
+                    <select asp-for="Pump.TankId" asp-items="@Model.TankList" class="form-select">
+                        <option disabled selected>--Select Fuel Tank--</option>
+                    </select>
+                    <span asp-validation-for="Pump.TankId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+     </div>
+        <div>
+        <a asp-controller="Pump" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Pumps List
+        </a>
+        @if (Model.Pump.Id != 0)
+        {
+            <button type="submit" class="btn btn-primary" style="width:50%">Update</button>
+
+        }
+        else
+        {
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:50%">Create</button>
+
+        }
+       
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

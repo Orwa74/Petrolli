@@ -1,0 +1,70 @@
+﻿@model Employee
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <br />
+    <br />
+    <h2 class="text-primary">Are you sure?</h2>
+    <p class="text-danger">You won't be able to revert this!</p>
+    <table class="table tabel-bordered table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Shift
+                </th>
+                <th>
+                    PhoneNumber
+                </th>
+                <th>
+                    Email
+                </th>
+                
+        </thead>
+        <tbody>
+            
+                <tr>
+                    <td width="20%">
+                    @Model.FirstName
+                    </td>
+                <td width="20%">
+                    @Model.LastName
+                    </td>
+                <td width="20%">
+                    @Model.Role
+                    </td>
+                <td width="20%">
+                    @Model.Shift.Name
+                </td>
+                <td width="20%">
+                    @Model.PhoneNumber
+                </td>
+                <td width="20%">
+                    @Model.Email
+                </td>
+                   
+                </tr>
+       </tbody>
+    </table>
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Employees List
+        </a>
+    <button type="submit" class="btn btn-danger" style="width:50%">Yes, delete it!</button>
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

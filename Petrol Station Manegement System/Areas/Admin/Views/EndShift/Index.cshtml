@@ -1,0 +1,109 @@
+﻿
+@model IEnumerable<EndShift>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Sidebar" />
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-md-6">
+            <h2 class="text-primary">End shifts</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-controller="EndShift" asp-action="End_Shift" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &ensp; End Shift
+            </a>
+        </div>
+    </div>
+</div>
+<hr />
+<table class="table tabel-bordered table-striped" style="width: 100%"> 
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" class="text-dark">@Html.DisplayNameFor(model => model.Date)</a>
+            </th>
+            <th>
+                Shift
+            </th>
+            <th>
+                Employee
+            </th>
+            <th>
+                Pump Code
+            </th>
+            <th>
+                Last Meter
+            </th>
+            <th>
+                Current Meter
+            </th>
+            <th>
+                Fuel Amount
+            </th>
+            <th>
+                Litter Price
+            </th>
+            <th>
+                Total price
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td  width="10%">
+                    <a asp-controller="EndShift" asp-action="Detales" asp-route-id="@obj.Id" class="text-dark">@obj.Date</a>
+                </td>
+                <td  width="10%">
+                    @obj.Shift.Name
+                </td>
+                <td width="10%">
+                    @obj.Employee.FirstName
+                </td>
+                <td class="text-center" width="10%">
+                    @obj.Pump.PumpCode
+                </td>
+                <td class="text-center" width="10%">
+                    @obj.PumpLastMeter
+                </td>
+                <td class="text-center" width="10%">
+                    @obj.PumpMeter
+                </td>
+                <td width="10%">
+                    @{
+                        var amount = obj.PumpMeter - obj.PumpLastMeter;
+                    }
+                    @amount (litter)
+                </td>
+                <td width="10%">
+                        @obj.Price $
+                   </td>
+                <td width="10%">
+                    @obj.TotalProce $
+                </td>
+                <td>
+                    <div class="w-10 btn-group" role="group" >
+                        <a asp-controller="EndShift" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>   
+@Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}),
+new X.PagedList.Web.Common.PagedListRenderOptions{
+    LiElementClasses = new string[] {"page-item"},
+    PageClasses = new string[] {"page-link"}
+})

@@ -1,0 +1,45 @@
+﻿@model Shift
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="Edit">
+    <br />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+            <br />
+            <h2 class="text-primary">Edit Shift Time</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" color="black" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="StartTime"></label>
+                    <input asp-for="StartTime" class="form-control" color="black" type="time" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="EndTime"></label>
+                    <input asp-for="EndTime" class="form-control" color="black" type="time" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Shift" asp-action="Index" class="btn btn-light" style="width: 49%">
+            Back to Shift Time List
+        </a>
+        <button type="submit" class="btn btn-primary" style="width:50%">Update</button>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

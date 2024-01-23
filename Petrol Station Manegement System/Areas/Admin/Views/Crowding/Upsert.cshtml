@@ -1,0 +1,47 @@
+﻿@model PetrolStation.Models.ViewModels.CrowdingVM
+
+<partial name="_Sidebar" />
+<form method="post" asp-action="Upsert">
+    <input asp-for="Crowding.Id" hidden />
+    <br />
+    <br />
+    <div action="border p-3 mt-4">
+        <div class="row pb-2">
+           
+            <h2 class="text-primary">Update Crowding</h2>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Crowding.FuelTypeId"></label>
+                    <select asp-for="Crowding.FuelTypeId" asp-items="@Model.FuelTypeList" class="form-select">
+                        <option disabled selected>--Select Fuel Type--</option>
+                    </select>
+                    <span asp-validation-for="Crowding.FuelTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Crowding.Level"></label>
+                    <select asp-for="Crowding.Level" asp-items="@Model.CrowdingOptions" class="form-select">
+                        <option disabled selected>--Select Crowding Level--</option>
+                    </select>
+                    <span asp-validation-for="Crowding.Level" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Crowding" asp-action="Index" class="btn btn-light" style="width: 49%">
+        Back to Crowding List
+        </a>
+        <button type="submit" class="btn btn-primary" style="width:50%">Update</button>
+
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}

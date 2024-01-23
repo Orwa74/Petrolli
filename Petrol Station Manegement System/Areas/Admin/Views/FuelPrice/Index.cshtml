@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FuelPrice>
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Sidebar" />
+<div class="container p-2">
+    <div class="row pt-4">
+        <div class="col-md-6">
+            <h2 class="text-primary">Fuel Price</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-controller="FuelPrice" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &ensp; Add A New Fuel Price
+            </a>
+        </div>
+    </div>
+    <br />
+
+</div>
+
+<table  class="table tabel-bordered table-striped" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                Feul Type
+            </th>
+            <th>
+                Purrechasing Price
+            </th>
+            <th>
+                Selling Price
+            </th>
+            <th>
+                Last Change
+            </th>
+            <th>
+                
+            </th>
+            
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="15%">
+                    @obj.FuelType.Fuel_Type
+                </td>
+                <td width="20%">
+                    @obj.PurrechasingPrice $
+                </td>
+                <td width="15%">
+                    @obj.SelingPrice $
+                </td>
+                <td width="20%">
+                    @obj.Date
+                </td>
+                <td >
+                    <div class="w-80 btn-group" role="group">
+                        <a asp-controller="FuelPrice" asp-action="Upsert" asp-route-id="@obj.Id"
+                           class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-controller="FuelPrice" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>   
+<a asp-area="Admin" asp-controller="Dashboard" asp-action="Settings"
+   class="btn btn-light" style="width: 99%">
+    Back to Settings
+</a>
+

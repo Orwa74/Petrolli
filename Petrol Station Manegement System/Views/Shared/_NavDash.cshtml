@@ -1,0 +1,39 @@
+﻿
+<nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav me-auto">
+                <a asp-area="Admin" asp-controller="EndShift" asp-action="End_Shift"
+                   class="btn btn-outline-dark col-2" style="margin-right: 5px;">
+                     End Shift
+                </a>
+                <a asp-area="Admin" asp-controller="Payment" asp-action="AddPayment"
+                   class="btn btn-outline-dark col-3" style="margin-right: 5px;">
+                    <i class="bi bi-plus-circle"></i> New Payment
+                </a>
+                <a asp-area="Admin" asp-controller="FuelRequest" asp-action="Add"
+                   class="btn btn-outline-dark col-lg-3 col-md-2" style="margin-right: 5px;">
+                    <i class="bi bi-plus-circle"></i> Fuel Request
+                </a>
+                <a asp-area="Admin" asp-controller="FuelAddition" asp-action="Add"
+                   class="btn btn-outline-dark col-2" style="margin-right: 5px;">
+                    <i class="bi bi-plus-circle"></i> Add Fuel
+                </a>
+                <a asp-area="Admin" asp-controller="FuelPrice" asp-action="DashIndex"
+                   class="btn btn-outline-dark col-lg-2 col-md-2" style="margin-right: 5px;">
+                    <i class="bi bi-pencil-square"></i> Edit Price
+                </a>
+                <a asp-area="Admin" asp-controller="Crowding" asp-action="DashIndex"
+                   class="btn btn-outline-dark col-lg-2 col-md-2" style="margin-right: 5px;">
+                    <i class="bi bi-pencil-square"></i> Crowding
+                </a>
+                <a asp-area="Customer" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door btn btn-outline-danger"></i>
+                </a>
+            </ul>
+        </div>
+    </div>
+</nav>

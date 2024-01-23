@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FuelPrice>
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Sidebar" />
+<partial name="_NavDash" />
+<br/>
+<h1 class=" text-center text-primary">Fuel Prices</h1>
+<br/>
+<div class="container">
+    <div class="row">
+        @foreach(var type in Model)
+{
+     
+            <div class="col-lg-3 col-md-3" style="border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                 margin-left: 5%; margin-top: 20px; margin-bottom: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h4 class=" text-center">@type.FuelType.Fuel_Type</h4>
+                <h5 class=" text-center">Purrechasing Price: @type.PurrechasingPrice$</h5>
+                <h5 class=" text-center">Seling Price: @type.SelingPrice$</h5>
+                <br/>
+                <div class="w-80 btn-group" style=" margin-bottom: 20px;">
+                    <a asp-controller="FuelPrice" asp-action="DashEdit" asp-route-id="@type.Id"
+                       class="btn btn-primary mx-2">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                </div>
+                </div>
+            
+}
+    </div>
+</div>
+<br/>
+<a asp-area="Admin" asp-controller="Dashboard" asp-action="index"
+   class="btn btn-light" style="width: 99%">
+    Back to Dashboard
+</a>

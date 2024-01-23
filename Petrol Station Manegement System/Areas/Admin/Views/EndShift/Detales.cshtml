@@ -1,0 +1,58 @@
+﻿@model EndShift
+
+<partial name="_Sidebar" />
+<div class="container p-2">
+    <h2 class="text-primary">End shift Details</h2>
+</div>
+<hr />
+<table class="table table-bordered">
+    <tr>
+        <td><strong>Date Time:</strong></td>
+        <td>@Model.Date</td>
+    </tr>
+    <tr>
+        <td><strong>Shift:</strong></td>
+        <td>@Model.Shift.Name</td>
+    </tr>
+    <tr>
+        <td><strong>Employee:</strong></td>
+        <td>@Model.Employee.FirstName @Model.Employee.LastName</td>
+    </tr>
+    <tr>
+        <td><strong>Pump Code:</strong></td>
+        <td>@Model.Pump.PumpCode</td>
+    </tr>
+    <tr>
+        <td><strong>Last Meter:</strong></td>
+        <td>@Model.PumpLastMeter</td>
+    </tr>
+    <tr>
+        <td width="15%"><strong>Current Meter:</strong></td>
+        <td>@Model.PumpMeter</td>
+    </tr>
+    <tr>
+        <td><strong>Fuel Amount:</strong></td>
+        <td>
+            @{
+                var amount = Model.PumpMeter - Model.PumpLastMeter;
+            }
+            @amount (liter)
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Liter Price:</strong></td>
+        <td>@Model.Price $</td>
+    </tr>
+    <tr>
+        <td><strong>Total Price:</strong></td>
+        <td>@Model.TotalProce $</td>
+    </tr>
+    <tr>
+        <td><strong>Notes:</strong></td>
+        <td>@Model.Notes</td>
+    </tr>
+</table>
+<br/>
+<a asp-controller="EndShift" asp-action="Index" class="btn btn-light" style="width: 99%">
+    Back to The List
+</a>
